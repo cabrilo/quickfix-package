@@ -1,3 +1,5 @@
+#!/bin/bash
+
 rm -rf quickfix-python/C++
 rm -rf quickfix-python/spec
 rm -rf quickfix-python/quickfix*.py
@@ -14,6 +16,7 @@ cp quickfix/src/C++/*.h quickfix-python/C++
 cp quickfix/src/C++/*.hpp quickfix-python/C++
 cp quickfix/src/C++/*.cpp quickfix-python/C++
 cp -R quickfix/src/C++/double-conversion quickfix-python/C++
+cp -R quickfix/src/swig quickfix-python/C++
 cp quickfix/src/python3/QuickfixPython.cpp quickfix-python/C++
 cp quickfix/src/python3/QuickfixPython.h quickfix-python/C++
 
@@ -25,4 +28,4 @@ rm -f quickfix-python/C++/stdafx.*
 
 pushd quickfix-python
 python setup.py sdist
-PYTHONWARNINGS="ignore" twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+#PYTHONWARNINGS="ignore" twine upload --repository-url https://test.pypi.org/legacy/ dist/*

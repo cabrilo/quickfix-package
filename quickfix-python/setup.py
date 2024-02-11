@@ -3,7 +3,7 @@ from distutils.core import Extension
 from distutils.command.install import install
 from distutils.command.build import build
 from distutils.command.build_ext import build_ext
-from distutils.sysconfig import get_config_vars
+import distutils.sysconfig
 
 import subprocess
 import shutil
@@ -41,7 +41,6 @@ class build_ext_subclass( build_ext ):
         build_ext.build_extensions(self)
 
 # Remove the "-Wstrict-prototypes" compiler option, which isn't valid for C++.
-import distutils.sysconfig
 cfg_vars = distutils.sysconfig.get_config_vars()
 for key, value in cfg_vars.items():
     if type(value) == str:
@@ -63,7 +62,7 @@ setup(name='quickfix',
       url='http://www.quickfixengine.org',
       download_url='http://www.quickfixengine.org',
       license=license,
-      include_dirs=['C++'],
+      include_dirs=['C++', 'C++/swig', '/usr/include/postgresql', '/usr/include/openssl'], # TODO: Do we need /usr/include?
       cmdclass = {'build_ext': build_ext_subclass },
-      ext_modules=[Extension('_quickfix', glob.glob('C++/*.cpp'), extra_compile_args=['-std=c++0x', '-Wno-deprecated', '-Wno-unused-variable', '-Wno-deprecated-declarations', '-Wno-maybe-uninitialized'])],
+      ext_modules=[Extension('_quickfix', glob.glob('C++/*.cpp'), extra_compile_args=['-std=c++17', '-Wno-deprecated', '-Wno-unused-variable', '-Wno-deprecated-declarations', '-Wno-maybe-uninitialized'], extra_link_args=['-lpq', '-lssl'])],
 )

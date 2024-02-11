@@ -1,10 +1,6 @@
-apt-get install git
-apt-get install doxygen
-apt-get install graphviz
-apt-get install autoconf
-apt-get install libtool
-apt-get install g++
-apt-get install ruby
-apt-get install ruby-dev
-apt-get install python
-apt-get install python-dev
+#!/bin/bash
+
+
+# TODO: Optionally install ruby / python based on params
+# TODO: Handle python2/python3
+apt-get install -y git doxygen graphviz autoconf libtool g++ ruby ruby-dev python3 python3-dev libpq-dev libssl-dev python-is-python3
