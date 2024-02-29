@@ -16,7 +16,7 @@ class build_ext_subclass( build_ext ):
         self.compiler.define_macro("PYTHON_MAJOR_VERSION", sys.version_info[0])
         print("Testing for std::tr1::shared_ptr...")
         try:
-            self.compiler.compile(['test_std_tr1_shared_ptr.cpp'])
+            self.compiler.compile(['test_std_tr1_shared_ptr.cpp'], extra_preargs=['-std=c++17']),
             self.compiler.define_macro("HAVE_STD_TR1_SHARED_PTR")
             print("...found")
         except:
@@ -24,7 +24,7 @@ class build_ext_subclass( build_ext ):
 
         print("Testing for std::shared_ptr...")
         try:
-            self.compiler.compile(['test_std_shared_ptr.cpp'], extra_preargs=['-std=c++0x']),
+            self.compiler.compile(['test_std_shared_ptr.cpp'], extra_preargs=['-std=c++17']),
             self.compiler.define_macro("HAVE_STD_SHARED_PTR")
             print("...found")
         except:
@@ -32,7 +32,7 @@ class build_ext_subclass( build_ext ):
 
         print("Testing for std::unique_ptr...")
         try:
-            self.compiler.compile(['test_std_unique_ptr.cpp'], extra_preargs=['-std=c++0x']),
+            self.compiler.compile(['test_std_unique_ptr.cpp'], extra_preargs=['-std=c++17']),
             self.compiler.define_macro("HAVE_STD_UNIQUE_PTR")
             print("...found")
         except:
