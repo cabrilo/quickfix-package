@@ -25,5 +25,5 @@ pushd quickfix
 # TODO: Handle params here
 # TODO: Check if we even need make here - what's the point, we are building python3 module from sources. 
 # TODO: Add make check postgresql dependencies (create db, etc.) if make is even needed
-./configure --with-python3 --with-postgresql --with-ssl && make 
+./configure --with-python3 --with-postgresql --with-openssl
 popd
